@@ -192,16 +192,14 @@ namespace RSS.Controllers
                 var result = xml.Element("rss").Element("channel").Elements("item");
                 foreach (var xElement in result)
                 {
-                    SyndicationItem item = new SyndicationItem("Item", xElement.Element("description").Value,null,"itemID",DateTime.Now);
+                    SyndicationItem item = new SyndicationItem(xElement.Element("title").Value, xElement.Element("description").Value,null,"itemID",DateTime.Now);
                     items.Add(item);
                 }
             }
-            XmlWriter rssWriter = XmlWriter.Create(string.Concat(feed.Title)+".xml");
+            
             outputFeed.Items = items;
-            Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(outputFeed);
-            rssFormatter.WriteTo(rssWriter);
-            rssWriter.Close();
-            return View();
+
+            return new RssActionResult() {Feed = outputFeed};
         }
 
         protected override void Dispose(bool disposing)
