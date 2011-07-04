@@ -102,8 +102,8 @@ namespace RSS.Controllers
         public ActionResult AddRssFeed(RssFeed newRssFeed)
         {
             UserFeed usrFeed = (UserFeed) TempData["usrfeed"];
-           // Guid usrFeedId = usrFeed.ID;
-           // UserFeed userFeed = db.UserFeeds.SingleOrDefault(u => u.ID == usrFeedId);
+            Guid usrFeedId = usrFeed.ID;
+            UserFeed userFeed = db.UserFeeds.SingleOrDefault(u => u.ID == usrFeedId);
             if (ModelState.IsValid)
             {
                 RssFeed rssFeed = new RssFeed()
@@ -113,7 +113,7 @@ namespace RSS.Controllers
                                           Title = newRssFeed.Title,
                                       };
                 db.RssFeeds.AddObject(rssFeed);
-                usrFeed.RssFeeds.Add(rssFeed);
+                userFeed.RssFeeds.Add(rssFeed);
                 db.SaveChanges();
                 return RedirectToAction("AddRssFeed");
             }

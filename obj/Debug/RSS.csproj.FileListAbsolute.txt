@@ -26,3 +26,10 @@ C:\Users\Dixon\Desktop\RSS\RSS\bin\EntityFramework.xml
 C:\Users\Dixon\Desktop\RSS\RSS\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Dixon\Desktop\RSS\RSS\obj\Debug\RSS.dll
 C:\Users\Dixon\Desktop\RSS\RSS\obj\Debug\RSS.pdb
+C:\Users\a.efimov\rss\RSS\bin\RSS.dll
+C:\Users\a.efimov\rss\RSS\bin\RSS.pdb
+C:\Users\a.efimov\rss\RSS\bin\EntityFramework.dll
+C:\Users\a.efimov\rss\RSS\bin\EntityFramework.xml
+C:\Users\a.efimov\rss\RSS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\a.efimov\rss\RSS\obj\Debug\RSS.dll
+C:\Users\a.efimov\rss\RSS\obj\Debug\RSS.pdb

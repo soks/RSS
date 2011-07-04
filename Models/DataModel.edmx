@@ -13,12 +13,7 @@
           <EntitySet Name="sysdiagrams" EntityType="soksDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tags" EntityType="soksDBModel.Store.Tags" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserFeeds" EntityType="soksDBModel.Store.UserFeeds" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UserFeeds_To_RssFeeds" EntityType="soksDBModel.Store.UserFeeds_To_RssFeeds" store:Type="Tables" store:Schema="dbo" store:Name="UserFeeds_To_RssFeeds">
-            <DefiningQuery>SELECT 
-      [UserFeeds_To_RssFeeds].[RssFeeds_ID] AS [RssFeeds_ID], 
-      [UserFeeds_To_RssFeeds].[UserFeeds_ID] AS [UserFeeds_ID]
-      FROM [dbo].[UserFeeds_To_RssFeeds] AS [UserFeeds_To_RssFeeds]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="UserFeeds_To_RssFeeds" EntityType="soksDBModel.Store.UserFeeds_To_RssFeeds" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserFeeds_To_Tags" EntityType="soksDBModel.Store.UserFeeds_To_Tags" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="soksDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK__aspnet_Us__RoleI__60A75C0F" Association="soksDBModel.Store.FK__aspnet_Us__RoleI__60A75C0F">
@@ -116,9 +111,6 @@
           <Property Name="Title" Type="nchar" Nullable="false" MaxLength="32" />
           <Property Name="Description" Type="nchar" Nullable="false" MaxLength="128" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'RssDB.dbo.UserFeeds_To_RssFeeds' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="UserFeeds_To_RssFeeds">
           <Key>
             <PropertyRef Name="RssFeeds_ID" />
