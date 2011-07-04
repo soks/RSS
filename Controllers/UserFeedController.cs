@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Objects.DataClasses;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using System.Xml;
 using System.Xml.Linq;
 using RSS.Models;
 
@@ -93,7 +95,7 @@ namespace RSS.Controllers
             ViewBag.User_ID = new SelectList(db.Users, "ID", "UserName", newUserFeed.UserId);
             return View(newUserFeed);
         }
-        
+
         public ActionResult AddRssFeed()
         {
             return View();
@@ -102,7 +104,7 @@ namespace RSS.Controllers
         [HttpPost]
         public ActionResult AddRssFeed(RssFeed newRssFeed)
         {
-            UserFeed usrFeed = (UserFeed) TempData["usrfeed"];
+            UserFeed usrFeed = (UserFeed)TempData["usrfeed"];
             Guid usrFeedId = usrFeed.ID;
             UserFeed userFeed = db.UserFeeds.SingleOrDefault(u => u.ID == usrFeedId);
             if (ModelState.IsValid)
@@ -177,6 +179,29 @@ namespace RSS.Controllers
             UserFeedsModel userfeeds = new UserFeedsModel();
             userfeeds.UserFeeds = user.UserFeeds.ToList();
             return View(userfeeds);
+        }
+
+        public ActionResult Rss(Guid id)
+        {
+            UserFeed feed = db.UserFeeds.First(u => u.ID == id);
+            SyndicationFeed outputFeed = new SyndicationFeed(feed.Title, "", null, "feedID", DateTime.Now);
+            List<SyndicationItem> items = new List<SyndicationItem>();
+            foreach (var rss in feed.RssFeeds)
+            {
+                var xml = XDocument.Load(rss.Address);
+                var result = xml.Element("rss").Element("channel").Elements("item");
+                foreach (var xElement in result)
+                {
+                    SyndicationItem item = new SyndicationItem("Item", xElement.Element("description").Value,null,"itemID",DateTime.Now);
+                    items.Add(item);
+                }
+            }
+            XmlWriter rssWriter = XmlWriter.Create(string.Concat(feed.Title)+".xml");
+            outputFeed.Items = items;
+            Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(outputFeed);
+            rssFormatter.WriteTo(rssWriter);
+            rssWriter.Close();
+            return View();
         }
 
         protected override void Dispose(bool disposing)
