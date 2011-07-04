@@ -172,7 +172,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserFeeds_Filters">
-    <End Role="Filters" Type="soksDBModel.Store.Filters" Multiplicity="1" />
+    <End Role="Filters" Type="soksDBModel.Store.Filters" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UserFeeds" Type="soksDBModel.Store.UserFeeds" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Filters">
@@ -184,7 +186,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserFeeds_To_RssFeeds_RssFeed">
-    <End Role="RssFeeds" Type="soksDBModel.Store.RssFeeds" Multiplicity="1" />
+    <End Role="RssFeeds" Type="soksDBModel.Store.RssFeeds" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UserFeeds_To_RssFeeds" Type="soksDBModel.Store.UserFeeds_To_RssFeeds" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="RssFeeds">
@@ -196,7 +200,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserFeeds_To_RssFeeds_UserFeed">
-    <End Role="UserFeeds" Type="soksDBModel.Store.UserFeeds" Multiplicity="1" />
+    <End Role="UserFeeds" Type="soksDBModel.Store.UserFeeds" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UserFeeds_To_RssFeeds" Type="soksDBModel.Store.UserFeeds_To_RssFeeds" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserFeeds">
@@ -208,7 +214,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserFeeds_To_Tags_Tag">
-    <End Role="Tags" Type="soksDBModel.Store.Tags" Multiplicity="1" />
+    <End Role="Tags" Type="soksDBModel.Store.Tags" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UserFeeds_To_Tags" Type="soksDBModel.Store.UserFeeds_To_Tags" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tags">
@@ -220,7 +228,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserFeeds_To_Tags_UserFeed">
-    <End Role="UserFeeds" Type="soksDBModel.Store.UserFeeds" Multiplicity="1" />
+    <End Role="UserFeeds" Type="soksDBModel.Store.UserFeeds" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UserFeeds_To_Tags" Type="soksDBModel.Store.UserFeeds_To_Tags" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserFeeds">

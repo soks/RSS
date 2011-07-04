@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Web.Mvc;
 using System.Xml.Linq;
@@ -164,7 +165,7 @@ namespace RSS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            UserFeed userfeed = db.UserFeeds.Single(u => u.ID == id);
+            UserFeed userfeed = db.UserFeeds.FirstOrDefault(u => u.ID == id);
             db.UserFeeds.DeleteObject(userfeed);
             db.SaveChanges();
             return RedirectToAction("Index");
