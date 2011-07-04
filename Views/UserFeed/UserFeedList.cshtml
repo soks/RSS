@@ -1,0 +1,50 @@
+﻿@model RSS.Models.UserFeedsModel
+@{
+    ViewBag.Title = "User Feed List";
+}
+<div id="foobar">
+    <div id="col1">
+        <a href="#" class="previous">&nbsp;</a></div>
+    <div id="col2">
+        <div class="viewer">
+            <div class="reel">
+                @foreach (RSS.Models.UserFeed item in Model.UserFeeds)
+                {
+                    <div class="slide">
+                        <div class="editor-label">
+                            <h2>@Html.Label(item.Title)</h2></div>
+                        <fieldset>
+                            <legend>Description</legend>
+                            <div class="editor-field">@Html.Label(item.Description)</div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Rss</legend>
+                            @foreach (RSS.Models.RssFeed rss in item.RssFeeds)
+                            {
+                                <div class="editor-field"><h3> @Html.Encode(rss.Title) </h3>  @Html.Encode(rss.Address) </div>
+                            }
+                        </fieldset>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div id="col3">
+        <a href="#" class="next">&nbsp;</a></div>
+</div>
+<script type="text/javascript">
+
+    $('#foobar').slidertron({
+        viewerSelector: '.viewer',
+        reelSelector: '.viewer .reel',
+        slidesSelector: '.viewer .reel .slide',
+        navPreviousSelector: '.previous',
+        navNextSelector: '.next',
+        navFirstSelector: '.first',
+        navLastSelector: '.last'
+    });		
+
+</script>

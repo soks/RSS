@@ -1,0 +1,28 @@
+c:\users\a.efimov\documents\visual studio 2010\Projects\RSS\RSS\bin\RSS.dll
+c:\users\a.efimov\documents\visual studio 2010\Projects\RSS\RSS\bin\RSS.pdb
+c:\users\a.efimov\documents\visual studio 2010\Projects\RSS\RSS\bin\EntityFramework.dll
+c:\users\a.efimov\documents\visual studio 2010\Projects\RSS\RSS\bin\EntityFramework.xml
+c:\users\a.efimov\documents\visual studio 2010\Projects\RSS\RSS\obj\Debug\ResolveAssemblyReference.cache
+c:\users\a.efimov\documents\visual studio 2010\Projects\RSS\RSS\obj\Debug\RSS.dll
+c:\users\a.efimov\documents\visual studio 2010\Projects\RSS\RSS\obj\Debug\RSS.pdb
+D:\Dropbox\Programs\RSS\RSS\bin\RSS.dll
+D:\Dropbox\Programs\RSS\RSS\bin\RSS.pdb
+D:\Dropbox\Programs\RSS\RSS\bin\EntityFramework.dll
+D:\Dropbox\Programs\RSS\RSS\bin\EntityFramework.xml
+D:\Dropbox\Programs\RSS\RSS\obj\Debug\ResolveAssemblyReference.cache
+D:\Dropbox\Programs\RSS\RSS\obj\Debug\RSS.dll
+D:\Dropbox\Programs\RSS\RSS\obj\Debug\RSS.pdb
+C:\Users\a.efimov\Dropbox\Programs\RSS\RSS\bin\RSS.dll
+C:\Users\a.efimov\Dropbox\Programs\RSS\RSS\bin\RSS.pdb
+C:\Users\a.efimov\Dropbox\Programs\RSS\RSS\bin\EntityFramework.dll
+C:\Users\a.efimov\Dropbox\Programs\RSS\RSS\bin\EntityFramework.xml
+C:\Users\a.efimov\Dropbox\Programs\RSS\RSS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\a.efimov\Dropbox\Programs\RSS\RSS\obj\Debug\RSS.dll
+C:\Users\a.efimov\Dropbox\Programs\RSS\RSS\obj\Debug\RSS.pdb
+C:\Users\Dixon\Desktop\RSS\RSS\bin\RSS.dll
+C:\Users\Dixon\Desktop\RSS\RSS\bin\RSS.pdb
+C:\Users\Dixon\Desktop\RSS\RSS\bin\EntityFramework.dll
+C:\Users\Dixon\Desktop\RSS\RSS\bin\EntityFramework.xml
+C:\Users\Dixon\Desktop\RSS\RSS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dixon\Desktop\RSS\RSS\obj\Debug\RSS.dll
+C:\Users\Dixon\Desktop\RSS\RSS\obj\Debug\RSS.pdb

@@ -1,0 +1,35 @@
+﻿@model RSS.Models.UserFeed
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UserFeed</legend>
+
+    <div class="display-label">User</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User.UserName)
+    </div>
+
+    <div class="display-label">IsPublic</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsPublic)
+    </div>
+
+    <div class="display-label">IsFavourite</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsFavourite)
+    </div>
+
+    <div class="display-label">Filter</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Filter.FilterText)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UsersModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="UsersModelStoreContainer">
+    <EntitySet Name="Filters" EntityType="UsersModel.Store.Filters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rss_To_Tag" EntityType="UsersModel.Store.Rss_To_Tag" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RssFeeds" EntityType="UsersModel.Store.RssFeeds" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RssMessages" EntityType="UsersModel.Store.RssMessages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="UsersModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tags" EntityType="UsersModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserFeed" EntityType="UsersModel.Store.UserFeed" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="UsersModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Rss_To_Tag_RssFeeds" Association="UsersModel.Store.FK_Rss_To_Tag_RssFeeds">
+      <End Role="RssFeeds" EntitySet="RssFeeds" />
+      <End Role="Rss_To_Tag" EntitySet="Rss_To_Tag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rss_To_Tag_Tags" Association="UsersModel.Store.FK_Rss_To_Tag_Tags">
+      <End Role="Tags" EntitySet="Tags" />
+      <End Role="Rss_To_Tag" EntitySet="Rss_To_Tag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RssMessages_RssFeeds" Association="UsersModel.Store.FK_RssMessages_RssFeeds">
+      <End Role="RssFeeds" EntitySet="RssFeeds" />
+      <End Role="RssMessages" EntitySet="RssMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFeed_Filters" Association="UsersModel.Store.FK_UserFeed_Filters">
+      <End Role="Filters" EntitySet="Filters" />
+      <End Role="UserFeed" EntitySet="UserFeed" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFeed_RssFeeds" Association="UsersModel.Store.FK_UserFeed_RssFeeds">
+      <End Role="RssFeeds" EntitySet="RssFeeds" />
+      <End Role="UserFeed" EntitySet="UserFeed" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFeed_Users" Association="UsersModel.Store.FK_UserFeed_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserFeed" EntitySet="UserFeed" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Filters">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FilterText" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Rss_To_Tag">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Rss_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Tag_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RssFeeds">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RssMessages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Link" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="PubDate" Type="datetime" Nullable="false" />
+    <Property Name="Feed_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TagText" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserFeed">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="User_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Rss_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Filter_ID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastUpdate" Type="date" Nullable="false" />
+    <Property Name="PasswordSolt" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="256" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginIP" Type="nvarchar" MaxLength="40" />
+    <Property Name="IsActivated" Type="bit" Nullable="false" />
+    <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+    <Property Name="LastLockedOutDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLockedOutReason" Type="nchar" MaxLength="10" />
+    <Property Name="NewPasswordKey" Type="nvarchar" MaxLength="128" />
+    <Property Name="NewPasswordRequested" Type="datetime" />
+    <Property Name="NewEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="NewEmailKey" Type="nvarchar" MaxLength="128" />
+    <Property Name="NewEmailRequsted" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Rss_To_Tag_RssFeeds">
+    <End Role="RssFeeds" Type="UsersModel.Store.RssFeeds" Multiplicity="1" />
+    <End Role="Rss_To_Tag" Type="UsersModel.Store.Rss_To_Tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RssFeeds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rss_To_Tag">
+        <PropertyRef Name="Rss_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rss_To_Tag_Tags">
+    <End Role="Tags" Type="UsersModel.Store.Tags" Multiplicity="1" />
+    <End Role="Rss_To_Tag" Type="UsersModel.Store.Rss_To_Tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tags">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rss_To_Tag">
+        <PropertyRef Name="Tag_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RssMessages_RssFeeds">
+    <End Role="RssFeeds" Type="UsersModel.Store.RssFeeds" Multiplicity="1" />
+    <End Role="RssMessages" Type="UsersModel.Store.RssMessages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RssFeeds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RssMessages">
+        <PropertyRef Name="Feed_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFeed_Filters">
+    <End Role="Filters" Type="UsersModel.Store.Filters" Multiplicity="1" />
+    <End Role="UserFeed" Type="UsersModel.Store.UserFeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filters">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserFeed">
+        <PropertyRef Name="Filter_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFeed_RssFeeds">
+    <End Role="RssFeeds" Type="UsersModel.Store.RssFeeds" Multiplicity="1" />
+    <End Role="UserFeed" Type="UsersModel.Store.UserFeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RssFeeds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserFeed">
+        <PropertyRef Name="Rss_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFeed_Users">
+    <End Role="Users" Type="UsersModel.Store.Users" Multiplicity="1" />
+    <End Role="UserFeed" Type="UsersModel.Store.UserFeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserFeed">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

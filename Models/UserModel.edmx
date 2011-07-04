@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UsersModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="UsersModelStoreContainer">
+          <EntitySet Name="Users" EntityType="UsersModel.Store.Users" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastUpdate" Type="date" Nullable="false" />
+          <Property Name="PasswordSolt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="256" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="date" />
+          <Property Name="LastLoginDate" Type="date" Nullable="false" />
+          <Property Name="LastLoginIP" Type="nvarchar" MaxLength="40" />
+          <Property Name="IsActivated" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="LastLockedOutDate" Type="date" Nullable="false" />
+          <Property Name="LastLockedOutReason" Type="nchar" MaxLength="10" />
+          <Property Name="NewPasswordKey" Type="nvarchar" MaxLength="128" />
+          <Property Name="NewPasswordRequested" Type="date" />
+          <Property Name="NewEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewEmailKey" Type="nvarchar" MaxLength="128" />
+          <Property Name="NewEmailRequsted" Type="date" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UsersModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CustomRoleAndMembershipDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="UsersModel.Users" />
+        </EntityContainer>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" />
+          <Property Name="PasswordSolt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginIP" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="IsActivated" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="LastLockedOutDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLockedOutReason" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="NewPasswordKey" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="NewPasswordRequested" Type="DateTime" />
+          <Property Name="NewEmail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="NewEmailKey" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="NewEmailRequsted" Type="DateTime" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UsersModelStoreContainer" CdmEntityContainer="CustomRoleAndMembershipDB">
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="UsersModel.Users"><MappingFragment StoreEntitySet="Users">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+            <ScalarProperty Name="PasswordSolt" ColumnName="PasswordSolt" />
+            <ScalarProperty Name="Comments" ColumnName="Comments" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+            <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+            <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+            <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+            <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+            <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+            <ScalarProperty Name="LastLockedOutReason" ColumnName="LastLockedOutReason" />
+            <ScalarProperty Name="NewPasswordKey" ColumnName="NewPasswordKey" />
+            <ScalarProperty Name="NewPasswordRequested" ColumnName="NewPasswordRequested" />
+            <ScalarProperty Name="NewEmail" ColumnName="NewEmail" />
+            <ScalarProperty Name="NewEmailKey" ColumnName="NewEmailKey" />
+            <ScalarProperty Name="NewEmailRequsted" ColumnName="NewEmailRequsted" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="UserModel">
+        <EntityTypeShape EntityType="UsersModel.Users" Width="1.5" PointX="0.75" PointY="0.75" Height="4.2218636067708326" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

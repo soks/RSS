@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="soksDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="RssFeedDBConnection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Filters" EntityType="soksDBModel.Filter" />
+    <EntitySet Name="RssFeeds" EntityType="soksDBModel.RssFeed" />
+    <EntitySet Name="Tags" EntityType="soksDBModel.Tag" />
+    <EntitySet Name="UserFeeds" EntityType="soksDBModel.UserFeed" />
+    <EntitySet Name="Users" EntityType="soksDBModel.User" />
+    <AssociationSet Name="FK_UserFeeds_Filters" Association="soksDBModel.FK_UserFeeds_Filters">
+      <End Role="Filter" EntitySet="Filters" />
+      <End Role="UserFeed" EntitySet="UserFeeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFeeds_Users" Association="soksDBModel.FK_UserFeeds_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserFeed" EntitySet="UserFeeds" />
+    </AssociationSet>
+    <AssociationSet Name="UserFeeds_To_Tags" Association="soksDBModel.UserFeeds_To_Tags">
+      <End Role="Tag" EntitySet="Tags" />
+      <End Role="UserFeed" EntitySet="UserFeeds" />
+    </AssociationSet>
+    <AssociationSet Name="UserFeeds_To_RssFeeds" Association="soksDBModel.UserFeeds_To_RssFeeds">
+      <End Role="RssFeed" EntitySet="RssFeeds" />
+      <End Role="UserFeed" EntitySet="UserFeeds" />
+    </AssociationSet>
+    <EntitySet Name="aspnet_Roles" EntityType="soksDBModel.aspnet_Roles" />
+    <EntitySet Name="sysdiagrams" EntityType="soksDBModel.sysdiagram" />
+    <AssociationSet Name="aspnet_UsersInRoles" Association="soksDBModel.aspnet_UsersInRoles">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Filter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Guid" Name="ID" Nullable="false" />
+    <Property Type="String" Name="FilterText" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+    <NavigationProperty Name="UserFeeds" Relationship="soksDBModel.FK_UserFeeds_Filters" FromRole="Filter" ToRole="UserFeed" />
+  </EntityType>
+  <EntityType Name="RssFeed">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Guid" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserFeeds" Relationship="soksDBModel.UserFeeds_To_RssFeeds" FromRole="RssFeed" ToRole="UserFeed" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Guid" Name="ID" Nullable="false" />
+    <Property Type="String" Name="TagText" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserFeeds" Relationship="soksDBModel.UserFeeds_To_Tags" FromRole="Tag" ToRole="UserFeed" />
+  </EntityType>
+  <EntityType Name="UserFeed">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Guid" Name="ID" Nullable="false" />
+    <Property Type="Guid" Name="User_ID" Nullable="false" />
+    <Property Type="Boolean" Name="IsPublic" Nullable="false" />
+    <Property Type="Boolean" Name="IsFavourite" Nullable="false" />
+    <Property Type="Guid" Name="Filter_ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="32" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="128" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Filter" Relationship="soksDBModel.FK_UserFeeds_Filters" FromRole="UserFeed" ToRole="Filter" />
+    <NavigationProperty Name="User" Relationship="soksDBModel.FK_UserFeeds_Users" FromRole="UserFeed" ToRole="User" />
+    <NavigationProperty Name="Tags" Relationship="soksDBModel.UserFeeds_To_Tags" FromRole="UserFeed" ToRole="Tag" />
+    <NavigationProperty Name="RssFeeds" Relationship="soksDBModel.UserFeeds_To_RssFeeds" FromRole="UserFeed" ToRole="RssFeed" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Guid" Name="ID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastUpdate" Nullable="false" />
+    <Property Type="String" Name="PasswordSolt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Comments" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+    <Property Type="DateTime" Name="LastModifiedDate" />
+    <Property Type="DateTime" Name="LastLoginDate" Nullable="false" />
+    <Property Type="String" Name="LastLoginIP" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActivated" Nullable="false" />
+    <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+    <Property Type="DateTime" Name="LastLockedOutDate" Nullable="false" />
+    <Property Type="String" Name="LastLockedOutReason" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="NewPasswordKey" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="NewPasswordRequested" />
+    <Property Type="String" Name="NewEmail" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NewEmailKey" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="NewEmailRequsted" />
+    <NavigationProperty Name="UserFeeds" Relationship="soksDBModel.FK_UserFeeds_Users" FromRole="User" ToRole="UserFeed" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="soksDBModel.aspnet_UsersInRoles" FromRole="User" ToRole="aspnet_Roles" />
+  </EntityType>
+  <Association Name="FK_UserFeeds_Filters">
+    <End Type="soksDBModel.Filter" Role="Filter" Multiplicity="1" />
+    <End Type="soksDBModel.UserFeed" Role="UserFeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filter">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserFeed">
+        <PropertyRef Name="Filter_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFeeds_Users">
+    <End Type="soksDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="soksDBModel.UserFeed" Role="UserFeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserFeed">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserFeeds_To_Tags">
+    <End Type="soksDBModel.Tag" Role="Tag" Multiplicity="*" />
+    <End Type="soksDBModel.UserFeed" Role="UserFeed" Multiplicity="*" />
+  </Association>
+  <Association Name="UserFeeds_To_RssFeeds">
+    <End Type="soksDBModel.RssFeed" Role="RssFeed" Multiplicity="*" />
+    <End Type="soksDBModel.UserFeed" Role="UserFeed" Multiplicity="*" />
+  </Association>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="Guid" Name="RoleId" Nullable="false" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LoweredRoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="soksDBModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="aspnet_UsersInRoles">
+    <End Type="soksDBModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+    <End Type="soksDBModel.User" Role="User" Multiplicity="*" />
+  </Association>
+</Schema>
