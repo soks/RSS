@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
 using RSS.Models;
+using ILoveRss.Filters;
 
 using Filter = RSS.Models.Filter;
 
@@ -18,7 +19,7 @@ namespace RSS.Controllers
         private readonly RssFeedDBConnection db = new RssFeedDBConnection();
         //
         // GET: /UserFeed/
-
+        [LoaderOptimization(LoaderOptimization.SingleDomain)]
         public ActionResult Index()
         {
             User user = Models.User.GetUserByName(User.Identity.Name);
@@ -31,13 +32,18 @@ namespace RSS.Controllers
                 {
                     userFeed = db.UserFeeds.Where(u => u.User_ID == userID).ToList();
                 }
+                var filter1 = new ContainsWordFilter("ты");
+                //var filter2 = new DateBeforeFilter(new DateTime(2011, 6, 29));
+                //var logfilter = new AndLogicalFilter();
+                //var filters = new IFilter[] {filter1};
+                //var globFilter = new GlobalFilter(filters);
                 List<XElement> RssList = new List<XElement>();
                 foreach (UserFeed feed in userFeed)
                 {
                     foreach (var rss in feed.RssFeeds)
                     {
                         var xml = XDocument.Load(rss.Address);
-                        var result = xml.Element("rss").Element("channel").Elements("item");
+                        var result = xml.Element("rss").Element("channel").Elements("item").Where(filter1.GetLambda());
                         foreach (var xElement in result)
                         {
                             RssList.Add(xElement);

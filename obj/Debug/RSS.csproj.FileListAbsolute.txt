@@ -33,3 +33,5 @@ C:\Users\a.efimov\rss\RSS\bin\EntityFramework.xml
 C:\Users\a.efimov\rss\RSS\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\a.efimov\rss\RSS\obj\Debug\RSS.dll
 C:\Users\a.efimov\rss\RSS\obj\Debug\RSS.pdb
+C:\Users\a.efimov\rss\RSS\bin\Filters.dll
+C:\Users\a.efimov\rss\RSS\bin\Filters.pdb
